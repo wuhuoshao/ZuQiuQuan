@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>足球圈</title>
+		<link rel="stylesheet" href="css/swiper.min.css">
+		<script src="js/swiper.jquery.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script src="js/jquery-1.11.3.js"></script>
+		<script>
+			+ function() {
+				var width = document.documentElement.clientWidth;
+				var html = document.getElementsByTagName("html")[0];
+				html.style.fontSize = (width / 6.4) + "px";
+			}();
+		</script>
+		<script type="text/javascript">
+			document.addEventListener('plusready', function() {
+				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+				var swiper = new Swiper('.swiper-container', {
+					//				effect:"fade",
+				});
+				
+			});
+		</script>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html {
+				/*font-size: 100px;
+				width: 100%;*/
+				height: 100%;
+			}
+			
+			body {
+				position: relative;
+				width: 6.4rem;
+				height: 100%;
+			}
+			
+			.swiper-container {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.stage {
+				height: 100%;
+				/*设置弹性盒子*/
+				display: box;
+				display: -webkit-box;
+				display: -moz-box;
+				display: -o-box;
+				/*竖排分配*/
+				box-orient: vertical;
+				-moz-box-orient: vertical;
+				-webkit-box-orient: vertical;
+				-o-box-orient: vertical;
+			}
+			
+			.header {
+				height: 0.93rem;
+				background: #0CC440;
+				/*line-height: 8.8rem;*/
+				text-align: center;
+				position: relative;
+			}
+			
+			#div-more {
+				height: 0.21rem;
+				width: 0.3rem;
+				background: url(img/icon.png);
+				background-size: 100%;
+				float: left;
+				margin-top: 0.33rem;
+				margin-left: 0.2rem;
+			}
+			
+			.header>#div-zhongjian {
+				height: 0.38rem;
+				width: 1.95rem;
+				background: url(img/a.png);
+				margin: 0 auto;
+				margin: 0.29rem auto 0 auto;
+				background-size: 100% 100%;
+			}
+			
+			.header>#div-zhongjian span {
+				width: 0.975rem;
+				height: 0.38rem;
+				background-size: 100%;
+				font-size: 0.2rem;
+				display: block;
+				float: left;
+				text-align: center;
+				line-height: 0.38rem;
+				color: white;
+			}
+			
+			.header>#div-zhongjian #span1 {
+				background: url(img/left.png);
+				background-size: 100%;
+			}
+			
+			.nav {
+				height: 0.8rem;
+				width: 100%;
+			}
+			
+			#swiper-container2 .swiper-slide {
+				font-family: '微软雅黑';
+				color: #686868;
+				text-align: center;
+				font-size: 0.2rem;
+				line-height: 0.8rem !important;
+				
+				font-size: 0.14rem !important;
+				background: #eee !important;
+			}
+			
+			#swiper-container2 .active-nav {
+				/*background: #ddd !important;*/
+				color: #08c63e !important;
+				border-bottom: 0.5rem solid #08c63e;
+			}
+			
+			
+			
+			.content {
+				box-flex: 1;
+				-webkit-box-flex: 1;
+				-moz-box-flex: 1;
+				-o-box-flex: 1;
+				overflow: auto;
+				border-bottom: 1px solid #D9D9D9;
+				border-top: 1px solid #D9D9D9;
+			}
+			
+			figure {
+				width: 3.15rem;
+				border: 1px solid #D9D9D9;
+				float: left;
+				margin-right: 0.01rem;
+			}
+			
+			.content figure>img {
+				border-bottom: 1px solid #D9D9D9;
+				width: 100%;
+			}
+			
+			.content figure>figcaption {
+				height: 0.3rem;
+				line-height: 0.3rem;
+				font-size: 0.16rem;
+				text-align: center;
+				font-family: '微软雅黑';
+				color: #686868;
+			}
+			
+			.footer {
+				height: 0.88rem;
+			}
+			
+			.footer>ul {
+				margin: 0;
+				padding: 0;
+				height: 0.88rem;
+			}
+			.footer>ul>li {
+				list-style: none;
+				width: 20%;
+				height: 0.68rem;
+				float: left;
+				font-size: 0.26rem;
+				text-align: center;
+				font-family: '微软雅黑';
+				color: #686868;
+			}
+			.footer>ul>li span {
+				display: block;
+				width: 0.4rem;
+				height: 0.4rem;
+				margin: 0 auto;
+				background-image: url(img/nav.png);
+				background-repeat: no-repeat;
+				background-size: 560% 200%;
+			}
+			
+			.footer>ul>li:nth-child(1)>span {
+				background-position: 0 -0.4rem;
+				background-image: url(img/nav.png);
+			}
+			
+			.footer>ul>li:nth-child(2)>span {
+				background-position: -0.8rem 0;
+			}
+			
+			.footer>ul>li:nth-child(3) {
+				position: relative;
+			}
+			
+			.footer>ul>li:nth-child(3)>div {
+				position: absolute;
+				top: -0.1rem;
+				left: 50%;
+				margin-left: -0.53rem;
+				width: 0.86rem !important;
+				height: 0.86rem !important;
+				border: 0.03rem solid #D9D9D9;
+				border-radius: 50%;
+				background: white;
+			}
+			
+			.footer>ul>li:nth-child(3)>div>span {
+				margin-top: 0.13rem;
+				background-image: url(img/can.png) !important;
+				background-position: 0 0 !important;
+				background-size: 100% 100% !important;
+				width: 0.66rem;
+				height: 0.6rem;
+			}
+			
+			.footer>ul>li:nth-child(4)>span {
+				background-position: -1.2rem 0;
+			}
+			
+			.footer>ul>li:nth-child(5)>span {
+				background-position: -0.4rem 0;
+			}
+			
+			.footer>ul .selected {
+				color: #08c63e !important;
+			}
+			#left-alide{
+				background-color: rgba(34,91,50,0.8);
+				position: absolute;
+				left: 0;
+				top: 0;
+				height: 100%;z-index: 2;
+				width: 50%;
+				color: white;
+				display: none;
+			}
+			#left-alide>p{
+				text-align: center;
+				font-size: 0.24rem;
+				height: 0.6rem;
+				line-height: 0.6rem;
+				
+			}
+			#left-alide>.p2{
+				line-height: 0.6rem;
+				color: #a3bda4;
+			}
+			#div-image{
+				height: 1.58rem;
+				width: 1.56rem;
+				margin: 0.33rem auto;
+			}
+			#div-image>img {
+				width: 100%;
+				height: 100%;
+			}
+					
+		</style>
+	</head>
+
+	<body>
+
+		<!--外围的stage用来做舞台，来设置外围布局，写成弹性盒子-->
+		<div class="stage">
+
+			<header class="header">
+				<div id="div-more">
+				</div>
+				<div id="div-zhongjian">
+					<span id="span1">热点</span>
+					<span id="span2">关注</span>
+				</div>
+			</header>
+			<nav class="nav">
+				<div class="swiper-container" id="swiper-container2" >
+					<div class="swiper-wrapper">
+						<div class="swiper-slide active-nav">
+							足球生活
+						</div>
+						<div class="swiper-slide">
+							足球现场
+						</div>
+						<div class="swiper-slide">
+							足球美女
+						</div>
+
+					</div>
+				</div>
+				
+			</nav>
+
+			<!-----------------中间内容部分从此开始，其中使用swiper是滑动进行选项卡的切换---------------->
+			<div class="content" id="pubuliu">
+				<div class="swiper-container" id="swiper-container3">
+					<!--<div class="swiper-scrollbar"></div>-->
+					<div class="swiper-wrapper">
+						<!-------------场景一-------------------->
+						<div class="swiper-slide">
+							<figure>
+								<img src="img/1.jpg" />
+								<figcaption>小丸子啊小丸子</figcaption>
+							</figure>
+							<figure>
+								<img src="img/2.jpg" />
+								<figcaption>小丸子啊小丸子</figcaption>
+							</figure>
+							<figure>
+								<img src="img/3.jpg" />
+								<figcaption>小丸子啊小丸子</figcaption>
+							</figure>
+							<figure>
+								<img src="img/4.jpg" />
+								<figcaption>小丸子啊小丸子</figcaption>
+							</figure>
+							<figure>
+								<img src="img/1.jpg" />
+								<figcaption>小丸子啊小丸子</figcaption>
+							</figure>
+							<figure>
+								<img src="img/2.jpg" />
+								<figcaption>小丸子啊小丸子</figcaption>
+							</figure>
+							<figure>
+								<img src="img/3.jpg" />
+								<figcaption>小丸子啊小丸子</figcaption>
+							</figure>
+							<figure>
+								<img src="img/4.jpg" />
+								<figcaption>小丸子啊小丸子</figcaption>
+							</figure>
+
+						</div>
+
+						<!-------------------场景二---------------------->
+						<div class="swiper-slide" id="slide2">
+							
+						</div>
+						<!-------------------场景三---------------------->
+						
+						<div class="swiper-slide">Slide 3</div>
+
+					</div>
+				</div>
+			</div>
+			<footer class="footer">
+				<ul>
+					<li class="selected" class="btn0">
+						<span></span> 首页
+					</li>
+					<li class="btn1" onclick="faxian()">
+						<span></span> 发现
+					</li>
+					<li class="btn2" onclick="paizhao()">
+						<div><span></span></div>
+					</li>
+					<li class="btn3" onclick="wode()">
+						<span></span> 我的
+					</li>
+					<li idclass "btn4" onclick="tuichu()">
+						<span></span> 退出
+					</li>
+				</ul>
+			</footer>
+			<div id="left-alide">
+				<div id="div-image">
+					<img src="img/touxiang.png"/>
+				</div>
+				<p class="p1">萌萌哒小妖精</p>
+				<p class="p2">这家伙很懒什么也没留下</p>
+				<p class="p3">足球现场</p>
+				<p class="p4">足球生活</p>
+				<p class="p5">足球美女</p>
+			</div>
+		</div>
+		
+		<script>
+//		弹出左侧菜单
+ var leftAlide=document.getElementById("left-alide");
+ var divMore=document.getElementById("div-more");
+ var ostage=document.getElementsByClassName("stage")[0];
+divMore.onclick=function(e){
+	e.stopPropagation();
+	leftAlide.style.display="block";
+};
+ostage.onclick=function(){
+	leftAlide.style.display="none";
+}
+
+		function paizhao(){
+			location.href='paizhao.html';
+		}
+//		function faxian(){
+//			location.href='faxian.html';
+//		}
+//		function wode(){
+//			location.href='wode.html';
+//		}
+//		function tuichu(){
+//			location.href='tuichu.html';
+//		}
+			var mySwiper2 = new Swiper('#swiper-container2', {
+				watchSlidesProgress: true,
+				watchSlidesVisibility: true,
+				slidesPerView: 3,
+				onTap: function() {
+					mySwiper3.slideTo(mySwiper2.clickedIndex)
+				}
+			})
+			var mySwiper3 = new Swiper('#swiper-container3', {
+
+				onSlideChangeStart: function() {
+					updateNavPosition()
+				}
+
+			})
+
+			function updateNavPosition() {
+				$('#swiper-container2 .active-nav').removeClass('active-nav')
+				var activeNav = $('#swiper-container2 .swiper-slide').eq(mySwiper3.activeIndex).addClass('active-nav');
+
+				if(!activeNav.hasClass('swiper-slide-visible')) {
+					console.log(1);
+					if(activeNav.index() > mySwiper2.activeIndex) {
+						console.log(2);
+						var thumbsPerNav = Math.floor(mySwiper2.width / activeNav.width()) - 1
+						mySwiper2.slideTo(activeNav.index() - thumbsPerNav)
+					} else {
+						console.log(3);
+						mySwiper2.slideTo(activeNav.index())
+					}
+				}
+			}
+			var json={
+      	list:[      
+      		{src:"img/21.png",title:"徐云龙争顶"},
+      		{src:"img/21.png",title:"徐云龙争顶"},
+      		{src:"img/21.png",title:"徐云龙争顶"},
+      		{src:"img/21.png",title:"徐云龙争顶"},
+      		{src:"img/21.png",title:"徐云龙争顶"},
+      		{src:"img/21.png",title:"徐云龙争顶"},
+      		{src:"img/21.png",title:"徐云龙争顶"},
+      		{src:"img/21.png",title:"徐云龙争顶"},
+      		{src:"img/21.png",title:"徐云龙争顶"},
+      		{src:"img/21.png",title:"徐云龙争顶"},
+      	]};
+      	var slide2=document.getElementById("slide2");
+      	
+      	function chuangJian(){//先创建figure
+
+//console.log(body)
+        var arr=json.list;
+        for(var i=0;i<arr.length;i++){
+        	 var obj=arr[i];
+        	 var figure=document.createElement('figure');
+        	   slide2.appendChild(figure);
+        	 var img=document.createElement('img');
+        	    img.src=obj.src;
+        	   figure.appendChild(img);
+        	 var figcaption=document.createElement('figcaption');
+        	 figcaption.innerHTML=obj.title;
+      	      figure.appendChild(figcaption);
+
+        }
+         
+       }
+      	chuangJian();
+      	var content=document.getElementById("pubuliu")
+      	  content.onscroll=function(){
+//    	  	alert()
+      	if(load()){
+      		chuangJian();
+//    		puBl();
+      	}
+
+      }
+      	   function load(){//
+//    	   	alert()
+//     	var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+       	var scrollTop = content.scrollTop;
+//     	console.log(scrollTop);
+       	var clientHeight = document.documentElement.clientHeight||document.body.clientHeight;
+      	var slide2=document.getElementById("slide2");
+   
+       	var afigure=slide2.getElementsByTagName('figure');
+          var ofTop = afigure[afigure.length-1].offsetTop
+        if(ofTop<scrollTop +clientHeight+300){
+        	return true;
+        }else{
+        	return false;
+        }
+       }
+		</script>
+	</body>
+
+</html>

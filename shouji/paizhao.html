@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的</title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script src="js/jquery-1.11.3.js"></script>
+		<link href="css/cropper.min.css" rel="stylesheet">
+		<script src="js/cropper.min.js"></script>
+		<script>
+			+ function() {
+				var width = document.documentElement.clientWidth;
+				var html = document.getElementsByTagName("html")[0];
+				html.style.fontSize = (width / 6.4) + "px";
+			}();
+		</script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			html {
+				/*font-size: 100px;
+				width: 100%;*/
+				height: 100%;
+			}
+			body {
+				position: relative;
+				width: 6.4rem;
+				height: 100%;
+			}
+			
+			.stage {
+				height: 100%;
+				/*设置弹性盒子*/
+				display: box;
+				display: -webkit-box;
+				display: -moz-box;
+				display: -o-box;
+				/*竖排分配*/
+				box-orient: vertical;
+				-moz-box-orient: vertical;
+				-webkit-box-orient: vertical;
+				-o-box-orient: vertical;
+			}
+			
+			.header {
+				height: 0.93rem;
+				background: #0CC440;
+				/*line-height: 8.8rem;*/
+				text-align: center;
+				position: relative;
+			}
+			#div-more {
+				height: 0.21rem;
+				width: 0.3rem;
+				background: url(img/icon.png);
+				background-size: 100%;
+				float: left;
+				margin-top: 0.33rem;
+				margin-left: 0.2rem;
+			}
+			.header>#div-zhongjian {
+				height: 0.5rem;
+				width: 1.95rem;
+				/*background: url(img/a.png);*/
+				margin: 0 auto;
+				margin: 0.29rem auto 0 auto;
+				background-size: 100% 100%;
+			}
+			
+			.header>#div-zhongjian span {
+				width: 1.95rem;
+				height: 0.5rem;
+				font-size: 0.38rem;
+				display: block;
+				text-align: center;
+				line-height: 0.5rem;
+				color: white;
+			}
+			.content {
+				box-flex: 1;
+				-webkit-box-flex: 1;
+				-moz-box-flex: 1;
+				-o-box-flex: 1;
+				overflow: auto;
+				border-bottom: 1px solid #D9D9D9;
+				border-top: 1px solid #D9D9D9;
+			}
+			
+			.container {
+				height: 4.77rem;
+			}
+			
+			/*#XuanZe {
+				/*margin: 0.1rem auto;*/
+				/*height: 0.5rem;
+			}*/
+			
+			canvas {
+				/*background: red;*/
+				height: 3rem;
+				width: 4.2rem;
+				margin: 0 auto;
+				display: block;
+			}
+			
+			.footer {
+				height: 0.88rem;
+			}
+			
+			.footer>ul {
+				margin: 0;
+				padding: 0;
+				height: 0.88rem;
+			}
+			
+			.footer>ul>li {
+				list-style: none;
+				width: 20%;
+				height: 0.68rem;
+				float: left;
+				font-size: 0.26rem;
+				text-align: center;
+				font-family: '微软雅黑';
+				color: #686868;
+			}
+			
+			.footer>ul>li span {
+				display: block;
+				width: 0.4rem;
+				height: 0.4rem;
+				margin: 0 auto;
+				background-image: url(img/nav.png);
+				background-repeat: no-repeat;
+				background-size: 560% 200%;
+			}
+			
+			.footer>ul>li:nth-child(1)>span {
+				background-position: 0 -0.4rem;
+				background-image: url(img/nav.png);
+			}
+			
+			.footer>ul>li:nth-child(2)>span {
+				background-position: -0.8rem 0;
+			}
+			
+			.footer>ul>li:nth-child(3) {
+				position: relative;
+			}
+			
+			.footer>ul>li:nth-child(3)>div {
+				position: absolute;
+				top: -0.1rem;
+				left: 50%;
+				margin-left: -0.53rem;
+				width: 0.86rem !important;
+				height: 0.86rem !important;
+				border: 0.03rem solid #D9D9D9;
+				border-radius: 50%;
+				background: white;
+			}
+			
+			.footer>ul>li:nth-child(3)>div>span {
+				margin-top: 0.13rem;
+				background-image: url(img/can.png) !important;
+				background-position: 0 0 !important;
+				background-size: 100% 100% !important;
+				width: 0.66rem;
+				height: 0.6rem;
+			}
+			
+			.footer>ul>li:nth-child(4)>span {
+				background-position: -1.2rem 0;
+			}
+			
+			.footer>ul>li:nth-child(5)>span {
+				background-position: -0.4rem 0;
+			}
+			
+			.footer>ul .selected {
+				color: #08c63e !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="stage">
+
+			<header class="header">
+				<div id="div-more">
+				</div>
+				<div id="div-zhongjian">
+					<span id="span">个人中心</span>
+
+				</div>
+			</header>
+			<div class="content">
+				<div class="container"><img id="img1" src="img/p.jpg" width="100%" height="100%"></div>
+				<div id="XuanZe">
+					<button>裁切</button>
+					<button>放弃</button>
+				</div>
+				<canvas></canvas>
+				
+					<button>提交</button>
+			
+			</div>
+			<footer class="footer">
+				<ul>
+					<li class="selected" class="btn0" onclick="shouye()">
+						<span></span> 首页
+					</li>
+					<li class="btn1" onclick="faxian()">
+						<span></span> 发现
+					</li>
+					<li class="btn2">
+						<div><span></span></div>
+					</li>
+					<li class="btn3" onclick="wode()">
+						<span></span> 我的
+					</li>
+					<li idclass "btn4" onclick="tuichu()">
+						<span></span> 退出
+					</li>
+				</ul>
+			</footer>
+		</div>
+	</body>
+	<script>
+	function shouye(){
+			location.href='index.html';
+		}
+	
+//		function faxian(){
+//			location.href='faxian.html';
+//		}
+//		function wode(){
+//			location.href='wode.html';
+//		}
+//		function tuichu(){
+//			location.href='tuichu.html';
+//		}
+	
+		$('.container > img').cropper(); 
+var canvas=document.getElementsByTagName("canvas")[0];
+var ctx=canvas.getContext("2d");
+
+$("button").eq(0).click(function(){
+//	使用cropper插件来截取图片
+var img1=document.getElementById("img1");
+
+	var obj = $('.container > img').cropper('getData');	//首先找到要截取的图片，调用cropper函数
+	canvas.style.width=obj.width;
+	canvas.style.height=obj.height;
+	ctx.drawImage(img1,obj.x,obj.y,obj.width,obj.height,0,0, 300,150);	
+	console.log(obj);
+	
+});
+
+$("button").eq(1).click(function(){
+	ctx.clearRect(0,0,300,150);
+});
+
+$("button").eq(2).click(function(){	
+	var imgData = canvas.toDataURL("image/png"); 
+	//var base64Data = imgData.substr(22);	
+	console.log(imgData);
+});
+	</script>
+
+</html>

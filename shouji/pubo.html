@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+    div{
+    	border:solid 1px #000;
+    	border-radius: 8px;
+        width: 400px;
+        position:absolute;
+    }
+    img{
+    	width: 400px;
+    	height:auto;
+    }
+    p{
+     line-height: 20px;
+     font-size: 20px;
+      text-align: center;
+    }
+	</style>
+
+</head>
+<body>
+	
+</body>
+<script>
+      var json={
+      	list:[      
+      	{src:"images/IMG_2657.JPG",title:"任"},
+      	{src:"images/IMG_2659.JPG",title:"梦"},
+      	{src:"images/IMG_2660.JPG",title:"星"},
+      	{src:"images/IMG_2661.JPG",title:"我"},
+      	{src:"images/IMG_2662.JPG",title:"❤"},
+      	{src:"images/IMG_2663.JPG",title:"你"},
+      	{src:"images/IMG_2665.JPG",title:"愿"},
+      	{src:"images/IMG_2815.JPG",title:"一"},
+      	{src:"images/IMG_2825.JPG",title:"生"},
+      	{src:"images/IMG_2827.JPG",title:"一"},
+      	{src:"images/IMG_2847.JPG",title:"世"},
+      	{src:"images/IMG_2850.JPG",title:"与"},
+      	{src:"images/IMG_2851.JPG",title:"你"},
+      	{src:"images/IMG_2853.JPG",title:"相"},
+      	{src:"images/IMG_2655.JPG",title:"伴"},
+      	{src:"images/IMG_2652.JPG",title:"!"},
+      	]}
+      function chuangJian(){//先创建div
+      	var body=document.body;
+//console.log(body)
+        var arr=json.list;
+        for(var i=0;i<arr.length;i++){
+        	 var obj=arr[i];
+
+        	 var div=document.createElement('div');
+        	   body.appendChild(div);
+        	 var img=document.createElement('img');
+        	    img.src=obj.src;
+        	   div.appendChild(img);
+        	 var p=document.createElement('p');
+        	 p.innerHTML=obj.title;
+      	      div.appendChild(p);
+
+        }
+         
+       }
+       function puBl(){//排版
+
+       	  var  aDiv=document.getElementsByTagName('div');
+          var pMWidth=document.documentElement.clientWidth||document.body.clientWidth;
+           var divwidth=aDiv[0].offsetWidth
+           var num = Math.floor(pMWidth/divwidth);
+           var dis = (pMWidth%divwidth)/(num+1);
+           var pois=[];
+ 
+           for(var i=0;i<num;i++){
+           	pois[i]={x:divwidth*i+dis,y:0}
+           }
+           var index=0;
+           for(var j=0;j<aDiv.length;j++){
+           	      var index=getIndex(pois);
+                aDiv[j].style.left=pois[index].x+'px';
+                aDiv[j].style.top = pois[index].y+'px';
+                  pois[index].y+=aDiv[j].offsetHeight+20;
+           }
+
+  }
+      function getIndex(pois){
+	       var index=0;
+	       var mint = pois[0].y;
+	       for(var i=0;i<pois.length;i++){
+	       	if(mint>pois[i].y){
+	       		mint=pois[i].y
+	       		index=i;
+	       	}
+	       }
+	       return index;
+     
+      }
+      	chuangJian();
+        puBl();
+     window.onload=function(){
+      	
+      	puBl();puBl;
+     }
+      window.onscroll=function(){
+      	if(load()){
+      		chuangJian();
+      		puBl();
+      	}
+
+      }
+      window.onresize=function(){
+        puBl();
+      }
+       function load(){//
+       	var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+       	var clientHeight = document.documentElement.clientHeight||document.body.clientHeight;
+       	var aDiv=document.getElementsByTagName('div');
+          var ofTop = aDiv[aDiv.length-1].offsetTop
+        if(ofTop<scrollTop +clientHeight+300){
+        	return true;
+        }else{
+        	return false;
+        }
+       }
+	</script>
+</html>
