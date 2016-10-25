@@ -1,2 +1,1 @@
-# xuanzhuanmuma
-a small project
+移动端小项目：足球圈（未完成）
